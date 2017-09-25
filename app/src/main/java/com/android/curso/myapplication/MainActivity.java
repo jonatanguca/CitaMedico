@@ -2,14 +2,10 @@ package com.android.curso.myapplication;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -18,67 +14,55 @@ import android.widget.TimePicker;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  TextView tvhora;
-    private  TextView tvFecha;
-    private  EditText edtNombre;
+    private TextView tvHora;
+    private TextView tvFecha;
+    private EditText edtNombre;
     private RadioGroup bgOpciones;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         tvhora=(TextView)findViewById(R.id.tvHora);
-         tvFecha=(TextView)findViewById(R.id.tvFecha);
-        edtNombre=(EditText) findViewById(R.id.edtNombre);
-
-        bgOpciones=(RadioGroup)findViewById(R.id.bgOpciones);
-
+        tvHora = (TextView) findViewById(R.id.tvHora);
+        tvFecha = (TextView) findViewById(R.id.tvFecha);
+        edtNombre = (EditText) findViewById(R.id.edtNombre);
+        bgOpciones = (RadioGroup) findViewById(R.id.bgOpciones);
     }
 
-
-    public void fecha(View v){
+    public void fecha(View v) {
         new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int mothOfYear, int day) {
-
-                tvFecha.setText(day+"-"+(mothOfYear+1)+"-"+""+year);
-
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int day) {
+                tvFecha.setText(day + "-" + (monthOfYear + 1) + "-" + "" + year);
             }
-        },2016,3,20).show();
+        }, 2017, 8/*siempre un mes menos del "real"*/, 25).show();
     }
-    public void hora(View v){
+
+    public void hora(View v) {
         new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hora, int minuto) {
-
-                tvhora.setText(hora+"-"+minuto);
+                tvHora.setText(String.format("%02d:%02d", hora, minuto));
             }
-        },10,20,true).show();
-
-
-
-
+        }, 10, 0, true).show();
+        // los minutos entre el 0 y el 9, se ponen con UN sólo dígito, no se pone 00-09
     }
-    public void citar(View v){
 
-        Intent intent=new Intent(this,ConfirmacionActivity.class);
-        intent.putExtra("nombre",edtNombre.getText().toString());
-        intent.putExtra("fecha",tvFecha.getText().toString());
-        intent.putExtra("hora",tvhora.getText().toString());
+    public void citar(View v) {
 
-        int res=bgOpciones.getCheckedRadioButtonId();
-        switch (res){
+        Intent intent = new Intent(this, ConfirmacionActivity.class);
+        intent.putExtra("nombre", edtNombre.getText().toString());
+        intent.putExtra("fecha", tvFecha.getText().toString());
+        intent.putExtra("hora", tvHora.getText().toString());
+        int res = bgOpciones.getCheckedRadioButtonId();
+        switch (res) {
             case R.id.rbtnMedicinaGeneral:
-                intent.putExtra("tipo",getResources().getString(R.string.medicinageneral));
+                intent.putExtra("tipo", getResources().getString(R.string.medicinageneral));
                 break;
             case R.id.rbtnPediatria:
-                intent.putExtra("tipo",getResources().getString(R.string.pediatria));
+                intent.putExtra("tipo", getResources().getString(R.string.pediatria));
                 break;
-
-
         }
-
-     startActivity(intent);
-
-
+        startActivity(intent);
     }
 }

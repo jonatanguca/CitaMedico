@@ -79,7 +79,7 @@
         android:onClick="fecha"/>
 
     <Button
-        android:id="@+id/BTNhORA"
+        android:id="@+id/btnHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/btnFecha"
@@ -93,9 +93,9 @@
         android:id="@+id/btnCitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/BTNhORA"
-        android:layout_alignRight="@+id/BTNhORA"
-        android:layout_below="@+id/BTNhORA"
+        android:layout_alignEnd="@+id/btnHora"
+        android:layout_alignRight="@+id/btnHora"
+        android:layout_below="@+id/btnHora"
         android:layout_marginTop="31dp"
         android:text="citar"
         android:onClick="citar"
@@ -117,8 +117,8 @@
         android:id="@+id/tvHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/BTNhORA"
-        android:layout_alignBottom="@+id/BTNhORA"
+        android:layout_alignBaseline="@+id/btnHora"
+        android:layout_alignBottom="@+id/btnHora"
         android:layout_alignLeft="@+id/tvFecha"
         android:layout_alignStart="@+id/tvFecha"
         android:hint="sin seleccionar"/>

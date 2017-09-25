@@ -11,11 +11,11 @@ public class ConfirmacionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacion);
 
-        TextView textView=(TextView)findViewById(R.id.textView);
-        String cita=null;
-        String nombre=getIntent().getStringExtra("nombre");
-        textView.setText(nombre);
-
-        //etc...
+        TextView textView1 = (TextView) findViewById(R.id.textView);
+        String cita = null;
+        String nombre = getIntent().getStringExtra("nombre");
+        String fecha = getIntent().getStringExtra("fecha");
+        String hora = getIntent().getStringExtra("hora");
+        textView1.setText("Nombre: " + nombre + "\n" + "Fecha: " + fecha + "\n" + "Hora: " + hora);
     }
 }
